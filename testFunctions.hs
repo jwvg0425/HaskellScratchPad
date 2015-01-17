@@ -18,3 +18,11 @@ uppercase ch | ch == 'a' = 'A' | ch == 'b' = 'B' | ch == 'c' = 'C' | ch == 'd' =
 			 
 uppercaseString :: String -> String
 uppercaseString str = [uppercase ch | ch <- str]
+
+alphabetPair = zip ['a'..'z'] ['A'..'Z']
+changeFromList :: Char -> [(Char,Char)] -> Char
+changeFromList ch [x] = if fst x == ch then snd x else ch
+changeFromList ch str = if fst (head str) == ch then snd (head str) else changeFromList ch (tail str)
+uppercase' :: Char -> Char
+uppercase' ch = changeFromList ch alphabetPair
+uppercaseString' str = [uppercase' ch | ch <-str]
