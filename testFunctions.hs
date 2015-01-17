@@ -19,10 +19,18 @@ uppercase ch | ch == 'a' = 'A' | ch == 'b' = 'B' | ch == 'c' = 'C' | ch == 'd' =
 uppercaseString :: String -> String
 uppercaseString str = [uppercase ch | ch <- str]
 
-alphabetPair = zip ['a'..'z'] ['A'..'Z']
 changeFromList :: Char -> [(Char,Char)] -> Char
 changeFromList ch [x] = if fst x == ch then snd x else ch
 changeFromList ch str = if fst (head str) == ch then snd (head str) else changeFromList ch (tail str)
 uppercase' :: Char -> Char
 uppercase' ch = changeFromList ch alphabetPair
+			where alphabetPair = zip ['a'..'z'] ['A'..'Z']
 uppercaseString' str = [uppercase' ch | ch <-str]
+
+fiboList :: Int -> [Int]
+fiboList 0 = [1]
+fiboList 1 = [1,1]
+fiboList n = prevList ++ [lastButOne prevList + last prevList]
+		where prevList = fiboList (n-1)
+fibo' :: Int -> Int
+fibo' n = last (fiboList n)
