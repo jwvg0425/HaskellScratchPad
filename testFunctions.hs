@@ -26,6 +26,7 @@ uppercase' :: Char -> Char
 uppercase' ch = changeFromList ch alphabetPair
 			where alphabetPair = zip ['a'..'z'] ['A'..'Z']
 uppercaseString' str = [uppercase' ch | ch <-str]
+uppercaseStringByMap str = map uppercase' str
 
 fiboList :: Int -> [Int]
 fiboList 0 = [1]

@@ -1,8 +1,8 @@
 quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
 quicksort (x:xs) = smallerSorted ++ [x] ++ biggerSorted
-  where smallerSorted = quicksort [a | a <- xs, a <= x]
-        biggerSorted = quicksort [a | a <- xs, a > x] 
+  where smallerSorted = quicksort (filter (<=x) xs)
+        biggerSorted = quicksort (filter (>x) xs) 
 
 -- 해당 원소가 있는 위치를 돌려줌
 binarySearch :: (Ord a) => a -> [a] -> Int -> Int -> Int
