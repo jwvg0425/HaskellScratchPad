@@ -10,12 +10,12 @@ lastButOne xs = last (init xs)
 uppercase :: Char -> Char
 uppercase ch | ch == 'a' = 'A' | ch == 'b' = 'B' | ch == 'c' = 'C' | ch == 'd' = 'D'
 			 | ch == 'e' = 'E' | ch == 'f' = 'F' | ch == 'g' = 'G' | ch == 'h' = 'H'
-			 | ch == 'i' = 'I' | ch == 'j' = 'J' | ch == 'k' = 'K' | ch == 'l' = 'L' 
-			 | ch == 'm' = 'M' | ch == 'n' = 'N' | ch == 'o' = 'O' | ch == 'p' = 'P' 
+			 | ch == 'i' = 'I' | ch == 'j' = 'J' | ch == 'k' = 'K' | ch == 'l' = 'L'
+			 | ch == 'm' = 'M' | ch == 'n' = 'N' | ch == 'o' = 'O' | ch == 'p' = 'P'
 			 | ch == 'q' = 'Q' | ch == 'r' = 'R' | ch == 's' = 'S' | ch == 't' = 'T'
-			 | ch == 'u' = 'U' | ch == 'v' = 'V' | ch == 'w' = 'W' | ch == 'x' = 'X' 
+			 | ch == 'u' = 'U' | ch == 'v' = 'V' | ch == 'w' = 'W' | ch == 'x' = 'X'
 			 | ch == 'y' = 'Y' | ch == 'z' = 'Z' | otherwise = ch
-			 
+
 uppercaseString :: String -> String
 uppercaseString str = [uppercase ch | ch <- str]
 
@@ -28,6 +28,7 @@ uppercase' ch = changeFromList ch alphabetPair
 uppercaseString' str = [uppercase' ch | ch <-str]
 uppercaseStringByMap str = map uppercase' str
 
+
 fiboList :: Int -> [Int]
 fiboList 0 = [1]
 fiboList 1 = [1,1]
@@ -35,3 +36,17 @@ fiboList n = prevList ++ [lastButOne prevList + last prevList]
 		where prevList = fiboList (n-1)
 fibo' :: Int -> Int
 fibo' n = last (fiboList n)
+
+validParentheses :: String -> Bool
+validParentheses = check 0
+
+check :: Int -> String -> Bool
+check 0 [] = True
+check _ [] = False
+check n (f:l) = if f == '(' then check (n+1) l else if n > 0 then check (n-1) l else False
+
+fizzbuzz :: Int -> [Int]
+fizzbuzz n = [three - fifth, five - fifth, fifth]
+  where three = (n-1) `div` 3
+        five = (n-1) `div` 5
+        fifth = (n-1) `div` 15
