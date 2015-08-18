@@ -20,3 +20,6 @@ get n d = go n d n
                 
 s :: Int -> Int
 s n = (sum . concat) [get n d | d <- [0..9]]
+
+main = do
+    print $ s 10
