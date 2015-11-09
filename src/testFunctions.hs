@@ -1,3 +1,5 @@
+import Control.Monad
+
 factorial n = product [1..n]
 factorial' n = if n == 0 then 1 else n * factorial' (n-1)
 
@@ -50,3 +52,6 @@ fizzbuzz n = [three - fifth, five - fifth, fifth]
   where three = (n-1) `div` 3
         five = (n-1) `div` 5
         fifth = (n-1) `div` 15
+
+powerset :: [a] -> [[a]]
+powerset xs = filterM (\_ -> [True, False]) xs
